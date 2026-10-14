@@ -1,0 +1,384 @@
+@import './tokens.css';
+
+/* ============================ 基础重置 ============================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* ============================ 通用工具类 ============================ */
+.page-wrap {
+  width: 100%;
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: 0 var(--sp-4);
+}
+
+.section {
+  margin: var(--sp-5) 0;
+}
+
+.card {
+  background: var(--c-bg-elevated);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+  overflow: hidden;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 16px;
+  border-radius: var(--r-full);
+  background: var(--c-brand-gradient);
+}
+
+.section-more {
+  font-size: var(--fs-sm);
+  color: var(--c-text-3);
+  transition: color var(--dur) var(--ease);
+}
+
+.section-more:hover {
+  color: var(--c-brand);
+}
+
+/* 文字截断 */
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ellipsis-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 价格 */
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--c-price);
+  font-weight: 700;
+  font-family: 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
+  /* 整数、小数、货币符号是三个 flex 子项；窄容器里会各自换行成竖排，
+     因此禁止换行并允许溢出，保证价格永远一行显示。 */
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.price__int,
+.price__dec {
+  white-space: nowrap;
+}
+
+.price__symbol {
+  font-size: 0.7em;
+  margin-right: 1px;
+}
+
+.price--lg {
+  font-size: var(--fs-2xl);
+}
+
+.price--xl {
+  font-size: var(--fs-3xl);
+}
+
+/* 价格以外的删除线原价 */
+.price-origin {
+  margin-left: var(--sp-2);
+  color: var(--c-text-4);
+  font-size: var(--fs-sm);
+  text-decoration: line-through;
+}
+
+/* 标签 */
+.tag-line {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--r-xs);
+  font-size: var(--fs-xs);
+  line-height: 1;
+  background: var(--c-brand-soft);
+  color: var(--c-brand);
+}
+
+.tag-line--success {
+  background: var(--c-success-soft);
+  color: var(--c-success);
+}
+
+.tag-line--warning {
+  background: var(--c-warning-soft);
+  color: #c07c00;
+}
+
+.tag-line--info {
+  background: var(--c-info-soft);
+  color: var(--c-info);
+}
+
+.tag-line--plain {
+  background: var(--c-bg-muted);
+  color: var(--c-text-2);
+}
+
+/* 通用 flex 工具 */
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 网格：桌面端固定列数，不做移动端降级。
+   窗口过窄时由 .layout 的 min-width 保证页面不会挤成多列。 */
+.grid {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* 商品列表专用：宽屏 5 列，与首页推荐区密度一致 */
+.grid-products {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.gap-1 { gap: var(--sp-1); }
+.gap-2 { gap: var(--sp-2); }
+.gap-3 { gap: var(--sp-3); }
+.gap-4 { gap: var(--sp-4); }
+.gap-5 { gap: var(--sp-5); }
+
+.mt-2 { margin-top: var(--sp-2); }
+.mt-3 { margin-top: var(--sp-3); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-5 { margin-top: var(--sp-5); }
+.mb-3 { margin-bottom: var(--sp-3); }
+.mb-4 { margin-bottom: var(--sp-4); }
+
+.text-2 { color: var(--c-text-2); }
+.text-3 { color: var(--c-text-3); }
+.text-sm { font-size: var(--fs-sm); }
+.text-xs { font-size: var(--fs-xs); }
+.text-strong { font-weight: 700; }
+
+/* ============================ 按钮 ============================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  height: 40px;
+  padding: 0 var(--sp-5);
+  border-radius: var(--r-full);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all var(--dur) var(--ease);
+}
+
+.btn--primary {
+  background: var(--c-brand-gradient);
+  color: #fff;
+  box-shadow: var(--sh-brand);
+}
+
+.btn--primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+  filter: brightness(0.96);
+}
+
+.btn--ghost {
+  background: var(--c-bg-muted);
+  color: var(--c-text);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--c-border-strong);
+}
+
+.btn--outline {
+  border: 1px solid var(--c-brand);
+  color: var(--c-brand);
+  background: #fff;
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: var(--c-brand-soft);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--sm {
+  height: 32px;
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ============================ 路由过渡 ============================ */
+.fade-slide-enter-active {
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.fade-slide-leave-active {
+  transition: opacity 0.15s var(--ease);
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+}
+
+/* ============================ 滚动条 ============================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-border-strong);
+  border-radius: var(--r-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-text-4);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -1,0 +1,92 @@
+/* ==========================================================================
+   设计令牌（Design Tokens）
+   所有颜色 / 间距 / 圆角 / 阴影 / 字号集中在这里定义，
+   页面与组件只使用 var(--xxx)，改主题只需要改这一个文件。
+   ========================================================================== */
+
+:root {
+  /* ---------- 品牌色 ---------- */
+  --c-brand: #ff5a1f;
+  --c-brand-hover: #ff7333;
+  --c-brand-active: #e04810;
+  --c-brand-soft: #fff1eb;
+  --c-brand-soft-2: #ffe3d6;
+  --c-brand-gradient: linear-gradient(135deg, #ff7a45 0%, #ff4d16 100%);
+
+  /* ---------- 辅助色 ---------- */
+  --c-success: #16b364;
+  --c-success-soft: #e8f8f0;
+  --c-warning: #f5a524;
+  --c-warning-soft: #fff6e6;
+  --c-danger: #f5333f;
+  --c-danger-soft: #ffeced;
+  --c-info: #3a7afe;
+  --c-info-soft: #eaf1ff;
+
+  /* ---------- 中性色 ---------- */
+  --c-text: #1f2126;
+  --c-text-2: #5c6270;
+  --c-text-3: #8b909d;
+  --c-text-4: #b6bac4;
+  --c-text-inverse: #ffffff;
+
+  --c-bg: #f5f6f8;
+  --c-bg-elevated: #ffffff;
+  --c-bg-muted: #f0f1f4;
+  --c-bg-hover: #f7f8fa;
+
+  --c-border: #ebedf0;
+  --c-border-strong: #dcdfe6;
+
+  /* ---------- 语义别名 ---------- */
+  --c-price: #f5333f;
+  --c-price-bg: linear-gradient(135deg, #ff5a1f 0%, #f5333f 100%);
+  --c-mask: rgba(15, 17, 22, 0.55);
+
+  /* ---------- 间距 ---------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+
+  /* ---------- 圆角 ---------- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-full: 999px;
+
+  /* ---------- 阴影 ---------- */
+  --sh-xs: 0 1px 2px rgba(20, 22, 28, 0.05);
+  --sh-sm: 0 2px 8px rgba(20, 22, 28, 0.06);
+  --sh-md: 0 6px 20px rgba(20, 22, 28, 0.08);
+  --sh-lg: 0 12px 32px rgba(20, 22, 28, 0.12);
+  --sh-brand: 0 6px 16px rgba(255, 90, 31, 0.28);
+
+  /* ---------- 字号 ---------- */
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-base: 14px;
+  --fs-md: 15px;
+  --fs-lg: 17px;
+  --fs-xl: 20px;
+  --fs-2xl: 24px;
+  --fs-3xl: 30px;
+
+  /* ---------- 布局 ---------- */
+  --layout-max: 1200px;
+  --header-h: 60px;
+  --z-header: 100;
+  --z-mask: 2000;
+  --z-toast: 3000;
+
+  /* ---------- 动效 ---------- */
+  --ease: cubic-bezier(0.25, 0.8, 0.35, 1);
+  --dur: 0.22s;
+}

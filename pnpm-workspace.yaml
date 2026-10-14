@@ -1,0 +1,5 @@
+# esbuild 是 vite 的依赖，必须执行其安装脚本才能拿到平台二进制；
+# vue-demi 在本项目中未被直接依赖，关闭即可。
+allowBuilds:
+  esbuild: true
+  vue-demi: false
