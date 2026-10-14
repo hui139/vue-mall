@@ -29,12 +29,15 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          # 必须与本地生成 lockfile / 使用 allowBuilds 的版本一致。
+          # pnpm 9 不识别 allowBuilds，且 pnpm-workspace.yaml 缺 packages
+          # 字段时会直接报 "packages field missing or empty"。
+          version: 11
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
