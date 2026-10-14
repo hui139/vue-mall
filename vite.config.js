@@ -3,6 +3,10 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
+  // GitHub Pages 部署在子路径 https://<user>.github.io/<repo>/ 下，
+  // 需要把资源引用前缀改成该子路径，否则会去根路径找 /assets/... 而 404（白屏）。
+  // 本地 dev 与自定义域名部署时用 '/'，通过命令行动态覆盖。
+  base: process.env.VITE_BASE ?? '/',
   plugins: [vue()],
   resolve: {
     alias: {
